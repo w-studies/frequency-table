@@ -28,6 +28,7 @@ main {
   flex: 1;
   background-color: #fafafa;
   padding: 6px;
+  overflow-x: auto;
 }
 
 .app > header,
