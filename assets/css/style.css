@@ -161,3 +161,8 @@ td:hover, td.border {
 .fw-light {
   font-weight: lighter;
 }
+
+/**/
+.p-12 {
+  padding: 12px;
+}

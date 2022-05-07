@@ -73,9 +73,9 @@ frequencyTable.addEventListener('mouseover', e => {
     const index = ++element.cellIndex
     if (index > 1) {
       tableColumStyle.innerHTML = `
-      table th:nth-child(${index}),
-      table td:nth-child(${index}){
-        background-color: #fffce7 !important;
+      table thead tr th:nth-child(${index}),
+      table tbody tr td:nth-child(${index}){
+        background-color: #fffce7;
       }
     `
     }
@@ -148,5 +148,12 @@ for (const col of calcTotalFrom) {
       view      : window,
     }))
   }
-
 }
+
+document.querySelector('button').addEventListener('click', () => {
+  for (const c of document.querySelectorAll('td:not(:first-child)')) {
+    c.innerHTML = ''
+    c.className = ''
+    c.dataset.option = ''
+  }
+})
