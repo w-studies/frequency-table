@@ -116,6 +116,10 @@ td.ausent {
   background-color: #fadfdf !important;
 }
 
+td.aboned {
+  background-color: #fffed7 !important;
+}
+
 td:hover {
   border: thin solid #333;
   z-index:55;

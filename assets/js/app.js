@@ -10,6 +10,10 @@ const tdOptions = [
     class : 'ausent',
   },
   {
+    option: 'A',
+    class : 'aboned',
+  },
+  {
     option: '',
     class : '',
   },
@@ -59,6 +63,12 @@ frequencyTable.addEventListener('click', e => {
       const presentCells = tr.querySelectorAll('.present')
 
       tr.querySelector('td:nth-last-child(2)').innerHTML = presentCells.length
+
+      // totais de abonados:
+      const abonedCells = tr.querySelectorAll('.aboned')
+
+      tr.querySelector('td:nth-last-child(3)').innerHTML = abonedCells.length
+
       // totais de falta:
       const ausentCells = tr.querySelectorAll('.ausent')
 
