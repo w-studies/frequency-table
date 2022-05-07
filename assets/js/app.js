@@ -19,6 +19,28 @@ const tdOptions = [
   },
 ]
 
+// generate trs
+const getMothName = (date, length = 'short') => {
+  return new Date(date).toLocaleDateString('pt-br', {
+    month: length,
+  })
+}
+for (let m = 0; m < 12; m++) {
+  // create a tr
+  const row = document.createElement('tr')
+
+  // insert first cell with month name
+  row.insertCell().innerHTML = getMothName(new Date().setMonth(m)).toUpperCase()
+
+  // from 1 to 35
+  for (let c = 1; c < 36; c++) {
+    // insert a cell into tr
+    row.insertCell()
+  }
+  // insert complete tr into tbody
+  frequencyTable.querySelector('tbody').append(row)
+}
+
 frequencyTable.addEventListener('mouseover', e => {
   const element = e.target
   if (element.matches('td, th')) {
@@ -58,18 +80,18 @@ frequencyTable.addEventListener('click', e => {
 
       const tr = element.parentNode
 
-      // calcular totais
-      // totais de presença
+      // calc totals
+      // presence total
       const presentCells = tr.querySelectorAll('.present')
 
       tr.querySelector('td:nth-last-child(2)').innerHTML = presentCells.length
 
-      // totais de abonados:
+      // aboned total
       const abonedCells = tr.querySelectorAll('.aboned')
 
       tr.querySelector('td:nth-last-child(3)').innerHTML = abonedCells.length
 
-      // totais de falta:
+      // ausent total
       const ausentCells = tr.querySelectorAll('.ausent')
 
       tr.querySelector('td:nth-last-child(4)').innerHTML = ausentCells.length
