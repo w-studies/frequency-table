@@ -45,9 +45,22 @@ for (let m = 0; m < 12; m++) {
   const row = document.createElement('tr')
 
   for (const index in headTexts) {
-    // insert an empty cell into tr
-    // insert first cell with month name
-    row.insertCell().innerHTML = index > 0 ? '' : getMothName(new Date().setMonth(m)).toUpperCase()
+
+    // randomize data
+    const setOption = Math.floor(Math.random() * tdOptions.length)
+
+    const cell = row.insertCell()
+
+    if (index == 0) {
+      // insert first cell with month name
+      cell.innerHTML = getMothName(new Date().setMonth(m)).toUpperCase()
+    } else if (index < 32) {
+      // insert an empty/random feed cell into tr
+      cell.innerHTML = tdOptions[setOption].option
+      cell.className = tdOptions[setOption].class
+      cell.dataset.option = setOption
+    }
+
   }
   // insert complete tr into tbody
   frequencyTable.querySelector('tbody').append(row)
@@ -74,6 +87,16 @@ frequencyTable.addEventListener('mouseout', e => {
   tableColumStyle.innerHTML = ''
 })
 
+//
+const calcTotalFrom = [
+  // presence total
+  {child: 2, class: 'present'},
+  // aboned total
+  {child: 3, class: 'aboned'},
+  // ausent total
+  {child: 4, class: 'ausent'},
+]
+
 // when clicking on a cell
 frequencyTable.addEventListener('click', e => {
   const element = e.target
@@ -95,17 +118,35 @@ frequencyTable.addEventListener('click', e => {
       const tr = element.parentNode
 
       // calc totals
-      const calcTotalFrom = [
-        // presence total
-        {child: 2, class: 'present'},
-        // aboned total
-        {child: 3, class: 'aboned'},
-        // ausent total
-        {child: 4, class: 'ausent'},
-      ]
       for (const object of calcTotalFrom) {
         tr.querySelector(`td:nth-last-child(${object.child})`).innerHTML = tr.getElementsByClassName(object.class).length
       }
     }
   }
 })
+
+// highlight
+for (const col of calcTotalFrom) {
+  for (const cell of frequencyTable.querySelectorAll(`td:nth-last-child(${col.child})`)) {
+    cell.addEventListener('mouseover', () => {
+      const tr = cell.parentNode
+      for (const check of tr.getElementsByClassName(col.class)) {
+        check.classList.add('border')
+      }
+    })
+    cell.addEventListener('mouseout', () => {
+      const tr = cell.parentNode
+      for (const check of tr.getElementsByClassName(col.class)) {
+        check.classList.remove('border')
+      }
+    })
+    const tr = cell.parentNode
+
+    tr.querySelector('td:nth-child(4)').dispatchEvent(new MouseEvent('click', {
+      bubbles   : true,
+      cancelable: true,
+      view      : window,
+    }))
+  }
+
+}

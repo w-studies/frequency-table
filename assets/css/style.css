@@ -112,16 +112,25 @@ tbody td:first-child {
 td.present {
   background-color: #dffadf !important;
 }
+td.present.border {
+  border-color: darkgreen !important;
+}
 
 td.ausent {
   background-color: #fadfdf !important;
+}
+td.ausent.border {
+  border-color: #8B0000 !important;
 }
 
 td.aboned {
   background-color: #fffed7 !important;
 }
+td.aboned.border {
+  border-color: #d07600 !important;
+}
 
-td:hover {
+td:hover, td.border {
   border: thin solid #333;
   z-index:55;
 }
