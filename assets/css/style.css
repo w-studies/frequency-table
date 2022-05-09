@@ -140,8 +140,7 @@ td.aboned.border {
 }
 
 td:hover, td.border {
-  border: thin solid #333;
-  border-style: double;
+  border: thin double #333 !important;
   z-index: 55;
 }
 
