@@ -3,6 +3,7 @@ const tableColumStyle = document.querySelector('#table-column')
 const inputName = document.querySelector('input')
 const params = new URLSearchParams(location.search)
 const userId = params.get('id')
+const eList = document.querySelector('.list')
 const tdOptions = [{
   option: 'P', class: 'present',
 }, {
@@ -175,6 +176,9 @@ document.querySelector('button').addEventListener('click', async () => {
   // se response estiver ok
   if (response.statusCode === 200) {
     window.location = './'
+  } else {
+    eList.classList.add('text-danger')
+    eList.innerHTML = response.body
   }
 })
 
@@ -230,7 +234,7 @@ const fillList = (data) => {
     a.className = 'p-12'
     a.innerText = s.student
 
-    document.querySelector('.list').append(a)
+    eList.append(a)
   }
 }
 
@@ -242,7 +246,6 @@ const fillList = (data) => {
 const saveStudent = async (data, id) => {
 
   id = id || userId
-
   const response = await fetchJson(`api/save/${id ? `?id=${id}` : ''}`, data)
 
   return response
