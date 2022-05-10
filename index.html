@@ -11,15 +11,25 @@
 <body>
 <div class='app'>
   <header>HEADER</header>
-  <h1 class='fw-light'>Frequency Table</h1>
   <main>
-    <table>
-      <thead></thead>
-      <tbody></tbody>
-    </table>
+    <h1 class='fw-light m-0'>Frequency Table</h1>
+    <div class='p-12 d-block'>
+      <label>Student</label>
+      <input type='text' name='studend'>
+      <small class='feedback'>Digite o nome do aluno</small>
+    </div>
+    <div class='p-12'>
+      <a href='./'>Novo</a>
+    </div>
+    <div class='h-sroll'>
+      <table>
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
     <div class='text-center p-12'>
-      <button type='reset' class='p-12'>Reset</button>
-      <a href='./' class='p-12'>Refresh</a>
+      <button class='p-12'>Save</button>
+      <div class='list p-12'></div>
     </div>
   </main>
   <footer>
