@@ -198,11 +198,15 @@ const fetchJson = async (url, data, method = 'POST') => {
   // faz o request
   const request = await fetch(url, headers)
 
-  // converte o resultado da request em json
-  const body = await request.json()
+  try {
 
-  // retorna a resposta
-  return {statusCode: request.status, body}
+    // converte o resultado da request em json
+    const body = await request.json()
+    // retorna a resposta
+    return {statusCode: request.status, body}
+  } catch (e) {
+    return {statusCode: 404, body: e}
+  }
 }
 
 /**
@@ -214,7 +218,7 @@ const getStudents = async (id) => {
   const response = await fetchJson(`api/${id ? `?id=${id}` : ''}`, '', 'GET')
 
   // se response estiver ok
-  if (response.statusCode === 200) {
+  if (response.statusCode === 200 && response.body.data) {
     return response.body.data
   }
 }
